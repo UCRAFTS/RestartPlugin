@@ -11,7 +11,8 @@ public enum ConfigType
     NOTIFY_COUNTDOWN_SUB_TITLE("notifyCountDownSubTitle"),
     NOTIFY_RESTART_SUB_TITLE("notifyRestartSubTitle"),
     KICK_MESSAGE("kickMessage"),
-    RESTART_TIME_LIST("restartTimeList");
+    RESTART_TIME_LIST("restartTimeList"),
+    COMMANDS_BEFORE_RESTART("commandsBeforeRestart");
 
     private final String name;
 

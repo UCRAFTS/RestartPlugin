@@ -5,6 +5,7 @@ import de.leonhard.storage.internal.FlatFile;
 import ru.youcrafts.restart.types.ConfigType;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Config
 {
@@ -33,5 +34,6 @@ public class Config
                 "00:00",
                 "09:00"
         ));
+        this.config.setDefault(ConfigType.COMMANDS_BEFORE_RESTART.getName(), Collections.singletonList("rg save"));
     }
 }

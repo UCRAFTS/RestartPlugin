@@ -1,8 +1,10 @@
 package ru.youcrafts.restart.tasks;
 
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.jetbrains.annotations.NotNull;
 import ru.youcrafts.restart.Config;
 import ru.youcrafts.restart.RestartPlugin;
 import ru.youcrafts.restart.Utils;
@@ -72,14 +74,28 @@ public class RestartTask extends BukkitRunnable
             Utils.sendTitles(players, notifyTitle, notifySubTitle, 20, 60, 20);
 
             Bukkit.getServer().getScheduler().runTaskLater(RestartPlugin.getPlugin(), () -> {
-                Bukkit.getServer().setWhitelist(true);
+                Bukkit.setWhitelist(true);
+                List<String> restartCommands = this.config.getConfig().getStringList(ConfigType.COMMANDS_BEFORE_RESTART.getName());
+
+                for (String restartCommand : restartCommands) {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), restartCommand);
+                }
+
                 String kickMessage = this.config.getConfig().getString(ConfigType.KICK_MESSAGE.getName());
 
                 for (Player player : players) {
                     player.closeInventory();
+                    player.saveData();
                     player.kickPlayer(kickMessage);
                 }
 
+                @NotNull List<World> worlds = Bukkit.getWorlds();
+
+                for (World world : worlds) {
+                    world.save();
+                }
+
+                Bukkit.setWhitelist(false);
                 Bukkit.getServer().shutdown();
             }, 40);
         }
