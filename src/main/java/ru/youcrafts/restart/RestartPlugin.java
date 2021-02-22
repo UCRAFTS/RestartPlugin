@@ -12,7 +12,7 @@ import ru.youcrafts.restart.listeners.PlayerCommandPreprocessListener;
 import ru.youcrafts.restart.listeners.PlayerLoginListener;
 import ru.youcrafts.restart.tasks.RestartTask;
 
-@Plugin(name = "RestartPlugin", version = "1.0.0")
+@Plugin(name = "RestartPlugin", version = "1.1.0")
 @Author(value = "oDD1 / Alexander Repin")
 @Description(value = "Scheduled server restart plugin")
 public class RestartPlugin extends JavaPlugin
